@@ -150,7 +150,7 @@ gr_buffer=(Uint32 *)malloc(gr_sizescreen<<2);
 gr_buffer=(Uint32*)screen->pixels;
 #endif
 gr_ancho=XRES;
-gr_ypitch=gr_ancho<<2;
+gr_ypitch=gr_ancho;
 gr_alto=YRES;
 //---- poligonos2
 fillSol();
@@ -176,7 +176,7 @@ SDL_Quit();
 void gr_redraw(void) 
 {
 #ifdef EMSCRIPTEN
-SDL_UpdateTexture(texture,NULL,gr_buffer,gr_ypitch);
+SDL_UpdateTexture(texture,NULL,gr_buffer,gr_ypitch<<2);
 SDL_RenderCopy(renderer,texture,NULL,NULL);
 SDL_RenderPresent(renderer);
 //emscripten_sleep(0);
